@@ -7,6 +7,7 @@ export const client = createClient({
     apiversion: '2024-01-29',
     useCdn: true,
     token: process.env.REACT_APP_SANITY_TOKEN,
+    ignoreBrowserTokenWarning: true,
 
 });
 
