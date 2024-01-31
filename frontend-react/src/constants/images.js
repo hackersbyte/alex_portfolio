@@ -36,6 +36,8 @@ import skype from '../assets/skype.png';
 import spotify from '../assets/spotify.png';
 import crediblehats from '../assets/crediblehats.png';
 import jactinprogolf from '../assets/jactinprogolf.png';
+import django from '../assets/django.png';
+import postgresql from '../assets/postgresql.png';
 
 export default {
   email,
@@ -73,4 +75,6 @@ export default {
   spotify,
   crediblehats,
   jactinprogolf,
+  django,
+  postgresql,
 };
