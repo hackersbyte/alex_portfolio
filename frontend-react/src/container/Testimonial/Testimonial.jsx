@@ -15,6 +15,12 @@ const Testimonial = () => {
     setCurrentIndex(index);
   };
 
+  const brandVariants = {
+    initial: { x: 0, opacity: 0 },
+    inView: { x: -100, opacity: 1 }, // Adjust x value for desired scroll distance
+    out: { x: 100, opacity: 0 },
+  };
+
   useEffect(() => {
     const query = '*[_type == "testimonials"]';
     const brandsQuery = '*[_type == "brands"]';
@@ -25,7 +31,9 @@ const Testimonial = () => {
 
     client.fetch(brandsQuery).then((data) => {
       setBrands(data);
+      
     });
+
   }, []);
 
   return (
@@ -56,14 +64,19 @@ const Testimonial = () => {
       )}
 
       <div className="app__testimonial-brands app__flex">
-        {brands.map((brand) => (
-          <motion.div
-            whileInView={{ opacity: [0, 1] }}
-            transition={{ duration: 0.5, type: 'tween' }}
-            key={brand._id}
-          >
-            <img src={urlFor(brand.imgUrl)} alt={brand.name} />
-          </motion.div>
+        {brands.map((brand, index) => (
+        <motion.div
+          variants={brandVariants}
+          initial="initial"
+          animate="loop"
+          exit="out"
+          whileInView="inView"
+          transition={{ duration: 0.5, type: 'tween' }}
+          key={brand._id}
+          style={{ transform: `translateX(${index % 2 === 0 ? 0 : 100}%)` }} // Apply initial offset for alternating directions
+        >
+          <img src={urlFor(brand.imgUrl)} alt={brand.name} />
+        </motion.div>
         ))}
       </div>
     </>
